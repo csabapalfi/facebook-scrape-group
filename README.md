@@ -32,5 +32,14 @@ This script:
 * kills all running Chrome instances
 * starts up Chrome with remote debugging enabled
 * connects to that with Puppeteer
+* goes to your facebook group page
 * registers a MutationObserver and starts scrolling
 * for each node (post) added tries to grab the permalink id
+
+## Caveats
+
+* it's just a one night hack, quality is like that :D
+* kills your running Chrome
+* permalinks for posts on the first page are not captured
+* stopping condition is not exactly well-tried/tested - worked for me
+* OMG, just look at that `chrome.sh` - could be done in node
