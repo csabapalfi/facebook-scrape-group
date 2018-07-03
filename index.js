@@ -28,10 +28,10 @@ function registerMutationObserver() {
 
 async function scroll(page, scrollDelay = 1000) {
     let previousHeight;
-    while (mutationsSinceLastScroll > 0 || initialScrolls > 0) {
-        mutationsSinceLastScroll = 0;
-        initialScrolls--;
-        try {
+    try {
+        while (mutationsSinceLastScroll > 0 || initialScrolls > 0) {
+            mutationsSinceLastScroll = 0;
+            initialScrolls--;
             previousHeight = await page.evaluate(
                 'document.body.scrollHeight'
             );
@@ -41,11 +41,11 @@ async function scroll(page, scrollDelay = 1000) {
             await page.waitForFunction(
                 `document.body.scrollHeight > ${previousHeight}`,
                 {timeout: 600000}
-            );
-        } catch(e) {
-            console.log('Scroll failed', e);
+            ).catch(e => console.log('scroll failed'));
+            await page.waitFor(scrollDelay);
         }
-        await page.waitFor(scrollDelay);
+    } catch(e) {
+        console.log(e);
     }
 }
 
