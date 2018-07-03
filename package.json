@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
-    "start": "pgrep Chrome | xargs kill && node index.js"
+    "start": "pgrep Chrome | xargs kill && node index.js "
   },
   "dependencies": {
     "puppeteer": "^1.1.1"
