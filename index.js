@@ -32,7 +32,7 @@ async function scroll(page, scrollDelay = 1000) {
       initialScrolls--;
       previousHeight = await page.evaluate('document.body.scrollHeight');
       await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
-      await page.waitForFunction(`document.body.scrollHeight > ${previousHeight}`);
+      await page.waitForFunction(`document.body.scrollHeight > ${previousHeight}`, {timeout: 0});
       await page.waitFor(scrollDelay);
     }
   } catch(e) {
@@ -47,8 +47,9 @@ async function scroll(page, scrollDelay = 1000) {
   const browser =  await puppeteer.connect({browserWSEndpoint});
   const page = await browser.newPage();
   page.setViewport({ width: 1280, height: 926 });
+  page.setDefaultNavigationTimeout(0);
 
-  await page.goto(`https://www.facebook.com/groups/${path}/`);
+  await page.goto(`https://www.facebook.com/groups/${path}/`, {timeout: 0});
 
   await page.evaluate(registerMutationObserver);
 
