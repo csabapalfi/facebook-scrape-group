@@ -1,4 +1,6 @@
-# Scrape facebook group post permalinks with puppeteer and MutationObserver
+# Scrape facebook group post permalinks
+
+...with puppeteer and MutationObserver
 
 This is a one night hack that I used to scrape 5K+ permalink ids from a secret facebook group we use to share photos with family. It became an annoyance that there was no way to search posts by date and manually scrolling back over 2-3 years is not an option.
 
@@ -37,7 +39,7 @@ This script:
 
 ## Caveats
 
-* it's just a one night hack, quality is like that :D
+* it's just a one (now two) night hack, quality is like that :D
 * kills your running Chrome
 * permalinks for posts on the first page are not captured
 * stopping condition is not exactly well-tried/tested - worked for me
