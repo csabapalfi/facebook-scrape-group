@@ -23,7 +23,6 @@ PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm install
 ```
 
 * [PUPPETEER_SKIP_CHROMIUM_DOWNLOAD](https://pptr.dev/#?product=Puppeteer&version=v1.1.0&show=api-environment-variables) to skip downloading Chromium
-* also we rely on puppeteer@1.1 as that works with current stable Chrome 67 at the time of writing this
 
 ## How
 
@@ -42,4 +41,3 @@ This script:
 * kills your running Chrome
 * permalinks for posts on the first page are not captured
 * stopping condition is not exactly well-tried/tested - worked for me
-* OMG, just look at that `chrome.sh` - could be done in node

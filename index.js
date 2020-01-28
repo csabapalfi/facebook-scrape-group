@@ -1,8 +1,4 @@
-const puppeteer = require('puppeteer');
-const fs = require('fs');
-const {promisify} = require('util');
-const {exec} = require('child_process');
-
+const { getBrowser, startChrome } = require('./chrome')
 const [,,path] = process.argv;
 
 let mutationsSinceLastScroll = 0;
@@ -50,9 +46,12 @@ async function scroll(page, scrollDelay = 1000) {
 }
 
 (async () => {
-    const {stdout: browserWSEndpoint} = await promisify(exec)('./chrome.sh');
-    const browser = await puppeteer.connect({browserWSEndpoint});
-    const page = await browser.newPage();
+    const chrome = await startChrome();
+    const browser = await getBrowser(chrome);
+
+    const allPages = await browser.pages()
+    page = allPages[0]
+
     page.setViewport({ width: 1280, height: 926 });
 
     await page.goto(`https://www.facebook.com/groups/${path}/`);
