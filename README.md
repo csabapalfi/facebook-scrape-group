@@ -14,20 +14,19 @@ This is a one (now three) night hack that I used to scrape 8K+ permalink ids fro
 
 ## Usage
 
-1. Quit Google Chrome (if you have it running) 
+### 1. Quit Google Chrome (if you have it running) 
 
-> This is required to start a new Chrome instance with remote debugging enabled to allow Puppeteer to connect to Chrome (with your profile) that's assumed to be logged in to facebook.
+* This is required to start a new Chrome instance with remote debugging enabled to allow Puppeteer to connect to it.
+* This Chrome instance will use your default profile that's assumed to be logged in to facebook.
 
-2. Start the script
+### 2. Start the script
+
 ```sh
 node index.js <groupid> | tee permalinks.csv
 ```
 
-Output is in the format `permalink/id`. Just append that to your group URL and voila:
-
-`https://www.facebook.com/groups/<group-id>/permalink/<post-id>`
-
-...that post from 2014 is available to you again.
+* Output is simply a list of facebook post URLs (one per line).
+* ...that post from 2014 is available to you again if you were patient enough.
 
 ## How
 
@@ -41,5 +40,5 @@ This script:
 
 ## Caveats
 
-* it's just a one (now three) night hack, quality is like that :D
+* it's just a one (OK, now three) night hack, quality is like that :D
 * permalinks for posts on the first page are not captured

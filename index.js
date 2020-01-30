@@ -6,6 +6,8 @@ const {
 const {observeAddedNodes} = require('./lib/observe-added-nodes');
 const {scrollWhileChanging} = require('./lib/scroll');
 
+const GROUPS_URL = 'https://www.facebook.com/groups';
+
 (async () => {
   const [,,path] = process.argv;
 
@@ -15,7 +17,7 @@ const {scrollWhileChanging} = require('./lib/scroll');
 
   page.setViewport({ width: 1280, height: 926 });
   
-  await page.goto(`https://www.facebook.com/groups/${path}/`);
+  await page.goto(`${GROUPS_URL}/${path}/`);
 
   await page.evaluate(() => {
     window.onNodeAdded = node => {
@@ -34,7 +36,7 @@ const {scrollWhileChanging} = require('./lib/scroll');
   const detectChanges = (onChange) => 
     page.on('console', async (msg) => {
       if (msg._text && msg._text.startsWith('permalink')) {
-        console.log(msg._text);
+        console.log(`${GROUPS_URL}/${path}/${msg._text}`);
         onChange();
       }
     });
