@@ -25,7 +25,7 @@ This is a one (now three) night hack that I used to scrape 8K+ permalink ids fro
 node index.js <groupid> | tee permalinks.csv
 ```
 
-* Output is simply a list of facebook post URLs (one per line).
+* Output is simply CSV: `<ISO date>, <facebook post URL>` (one per line).
 * ...that post from 2014 is available to you again if you were patient enough.
 
 ## How

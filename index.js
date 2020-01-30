@@ -24,10 +24,8 @@ const GROUPS_URL = 'https://www.facebook.com/groups';
       if (node.id && node.id.startsWith('mall_post_')) {
         const permalinkId = node.id.replace(/:.*/, '')
           .replace('mall_post_', '');
-
-          // FIXME const author = node.querySelector('.profileLink').text;
-        // FIXME const datetime = node.querySelector('.timestamp').title;
-        console.log(`permalink/${permalinkId}`);
+        const timestamp = node.querySelector('abbr').dataset.utime;
+        console.log(`permalink/${permalinkId}, ${timestamp}`);
       }
     }
   })
@@ -36,7 +34,9 @@ const GROUPS_URL = 'https://www.facebook.com/groups';
   const detectChanges = (onChange) => 
     page.on('console', async (msg) => {
       if (msg._text && msg._text.startsWith('permalink')) {
-        console.log(`${GROUPS_URL}/${path}/${msg._text}`);
+        const [permalink, timestamp] = msg._text.split(',');
+        const date = new Date(timestamp * 1000).toISOString();
+        console.log(`${date}, ${GROUPS_URL}/${path}/${permalink}`);
         onChange();
       }
     });
