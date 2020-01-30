@@ -2,7 +2,15 @@
 
 ...with puppeteer and MutationObserver
 
-This is a one night hack that I used to scrape 5K+ permalink ids from a secret facebook group we use to share photos with family. It became an annoyance that there was no way to search posts by date and manually scrolling back over 2-3 years is not an option.
+This is a one (now three) night hack that I used to scrape 8K+ permalink ids from a secret facebook group we use to share photos with family. It became an annoyance that there was no way to search posts by date and manually scrolling back over 2-3 years is not an option.
+
+## Requirements
+
+* MacOS
+* Google Chrome installed (and logged in to facebook)
+* `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm install`
+
+> [PUPPETEER_SKIP_CHROMIUM_DOWNLOAD](https://pptr.dev/#?product=Puppeteer&version=v2.1.0&show=api-environment-variables) to skip downloading Chromium since we'll use your default Chrome anyway
 
 ## Usage
 
@@ -12,7 +20,7 @@ This is a one night hack that I used to scrape 5K+ permalink ids from a secret f
 
 2. Start the script
 ```sh
-node index.js <groupid> | tee permalinks.txt
+node index.js <groupid> | tee permalinks.csv
 ```
 
 Output is in the format `permalink/id`. Just append that to your group URL and voila:
@@ -21,19 +29,11 @@ Output is in the format `permalink/id`. Just append that to your group URL and v
 
 ...that post from 2014 is available to you again.
 
-## Setup
-
-```sh
-PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm install
-```
-
-* [PUPPETEER_SKIP_CHROMIUM_DOWNLOAD](https://pptr.dev/#?product=Puppeteer&version=v2.1.0&show=api-environment-variables) to skip downloading Chromium
-
 ## How
 
 This script:
 
-* starts up Chrome with your profile (and remote debugging enabled)
+* starts up Chrome with your default profile (and remote debugging enabled)
 * connects to Chrome with Puppeteer
 * goes to your facebook group page
 * registers a MutationObserver and starts scrolling
@@ -41,6 +41,5 @@ This script:
 
 ## Caveats
 
-* it's just a one (now two) night hack, quality is like that :D
+* it's just a one (now three) night hack, quality is like that :D
 * permalinks for posts on the first page are not captured
-* stopping condition is not exactly well-tried/tested - worked for me
