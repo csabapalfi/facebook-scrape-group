@@ -14,7 +14,7 @@ The API also supports specifying date ranges as UNIX timestamps (e.g. `?since=14
 
 * MacOS
 * Google Chrome installed (and logged in to facebook)
-* `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm install`
+* `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn`
 
 > [PUPPETEER_SKIP_CHROMIUM_DOWNLOAD](https://pptr.dev/#?product=Puppeteer&version=v2.1.0&show=api-environment-variables) to skip downloading Chromium since we'll use your default Chrome anyway
 
